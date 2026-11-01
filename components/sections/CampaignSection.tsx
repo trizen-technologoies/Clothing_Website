@@ -47,7 +47,7 @@ export function CampaignSection() {
     <section ref={root} aria-labelledby="campaign-title" className="relative overflow-hidden bg-ink">
       <div ref={nearRef} className="relative h-[100svh] max-h-[1100px] min-h-[640px]">
         {/* Visual: fabric study, with a static gradient composition underneath as fallback. */}
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(40%_60%_at_68%_45%,rgba(139,92,246,0.14),transparent_70%),radial-gradient(30%_50%_at_80%_55%,rgba(0,229,255,0.08),transparent_70%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(40%_60%_at_68%_45%,rgba(27,138,163,0.16),transparent_70%),radial-gradient(30%_50%_at_80%_55%,rgba(26,213,236,0.08),transparent_70%)]" />
         {webgl && mounted && !failed && (
           <div className={`absolute inset-0 transition-opacity duration-[1500ms] ${ready ? "opacity-100" : "opacity-0"}`}>
             <CanvasErrorBoundary onError={() => setFailed(true)}>
@@ -60,8 +60,8 @@ export function CampaignSection() {
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div data-letterbox className="absolute inset-x-0 top-0 h-[7%] origin-top bg-ink" />
           <div data-letterbox className="absolute inset-x-0 bottom-0 h-[7%] origin-bottom bg-ink" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(5,5,5,0.9),transparent_55%)] md:bg-[linear-gradient(to_right,rgba(5,5,5,0.85),rgba(5,5,5,0.2)_50%,transparent_70%)]" />
-          <div className="absolute inset-0 shadow-[inset_0_0_120px_30px_rgba(5,5,5,0.85)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(4,9,11,0.9),transparent_55%)] md:bg-[linear-gradient(to_right,rgba(4,9,11,0.85),rgba(4,9,11,0.2)_50%,transparent_70%)]" />
+          <div className="absolute inset-0 shadow-[inset_0_0_120px_30px_rgba(4,9,11,0.85)]" />
         </div>
 
         {/* HUD */}

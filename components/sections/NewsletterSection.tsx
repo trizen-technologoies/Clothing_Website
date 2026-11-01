@@ -30,7 +30,7 @@ export function NewsletterSection() {
     <section aria-labelledby="newsletter-title" className="relative overflow-hidden border-t border-line py-24 md:py-36">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(60%_70%_at_70%_100%,black,transparent)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(190,228,236,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(190,228,236,0.035)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(60%_70%_at_70%_100%,black,transparent)]"
       />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 right-[10%] h-80 w-[40rem] rounded-full bg-cyan/10 blur-[120px]" />
 

@@ -61,6 +61,7 @@ lib/
   garments.ts                Garment silhouettes (shared by SVG flats and 3D)
   commerce/                  Types, demo catalogue, Shopify client, commerce entry point
   size-guide.ts help-content.ts color.ts format.ts hooks.ts gsap.ts local-store.ts
+scripts/turntable.py         Builds the hero jacket's turntable frames from a green-screen video
 ```
 
 ### How the visuals work
@@ -69,6 +70,7 @@ lib/
   - `components/products/ProductArt.tsx` — SVG product illustrations (front, back, close-up) with rim lighting. These are clearly labelled illustrations, used wherever product photography is missing.
   - `components/three/garmentGeometry.ts` — the 3D **form study**: the outline is extruded with a deep rounded bevel, and details are painted into canvas bump/emissive/colour maps. It is a sculptural object derived from the flat, and is labelled as such — not a realistic garment model.
 - **Hero** (`components/hero/`): one sticky WebGL stage spans the first three scenes. Scroll progress through the statement and featured sections (GSAP ScrollTrigger → `heroState`) blends three camera/garment poses, so the jacket turns to show its reflective back tape behind "NOT MADE TO FOLLOW." and returns front-on with spec callouts for Collection 001. Nothing is pinned; the page scrolls natively.
+- **Hero jacket** (`components/three/TurntableGarment.tsx`): a filmed turntable, not a model. A camera-facing card shows the frame for the jacket's current turn, crossfading between neighbours; the scene's key, rim and glow levels are painted on in its shader. Every frame sits small on one sheet that stays on the GPU, so the turn always keeps up with the scroll; when the jacket comes to rest, full-size frames around it are decoded and fade in. Nothing is decoded mid-turn, which on integrated GPUs would drop frames.
 - **Campaign** (`components/sections/CampaignScene.tsx`): hanging silk strips whose displacement and normals are computed in the vertex shader.
 
 ### Performance and resilience
@@ -77,7 +79,8 @@ lib/
 - Scenes stop rendering when off-screen (IntersectionObserver → `frameloop="never"`), and when a page is hidden by Next's Activity-based navigation.
 - Lower-tier devices (narrow, touch, or fewer than 4 cores) get fewer particles, fewer monoliths, no reflections and no post-processing. On other devices, `PerformanceMonitor` starts judging after a 4-second warm-up, lowers render resolution step by step if frames drop, and only removes effects if it still struggles at native resolution.
 - Thin glowing lines (arch, rings, light strips) are screen-space lines with a fixed pixel width, so they never break into dashes at a distance.
-- **Fallbacks:** a static illustrated composition renders under the hero and stays if WebGL is unavailable or the scene errors (error boundary). With JavaScript disabled, a `<noscript>` style reveals all intro content.
+- Phones and other lower-tier devices show the turntable's frame sheet alone (~0.6 MB), which at their size is close to full resolution.
+- **Fallbacks:** a static composition with the jacket still renders under the hero and stays if WebGL is unavailable or the scene errors (error boundary). With JavaScript disabled, a `<noscript>` style reveals all intro content.
 - **Smooth scrolling:** mouse-wheel scrolling glides with inertia (Lenis, `components/SmoothScroll.tsx`), driven by GSAP's ticker so ScrollTrigger stays in sync. Touch and keyboard scrolling stay native, open dialogs pause it, and it is off for reduced motion. Tune the feel with `lerp` (lower is heavier).
 - **Reduced motion:** intro animations, scroll-driven camera moves, parallax and ambient motion are disabled; scenes render one static frame.
 - Post-processing uses SMAA instead of a multisampled buffer — MSAA combined with mipmap bloom rendered black on an Intel/Direct3D 11 GPU during testing.
@@ -89,7 +92,7 @@ lib/
 - Name, tagline, support email and social links: `lib/brand.ts`.
 - The wordmark is drawn from polygon glyphs in `components/layout/Wordmark.tsx` (V, A drawn as Λ, N, T). If `brand.name` uses other letters it falls back to set type automatically. To use your own logo, replace the component's return value with your SVG (keep `currentColor` so it inherits nav colours).
 - Favicon: `app/icon.svg`.
-- Colours and type tokens: the `@theme` block in `app/globals.css`.
+- Colours and type tokens: the `@theme` block in `app/globals.css`. The 3D scenes and SVG art take the same colours from `lib/palette.ts`; change both together.
 
 ### Product images
 
@@ -126,7 +129,17 @@ The demo uses **free-licence stock photos** from Unsplash ([Unsplash License](ht
 
 ### 3D models
 
-Set `model3d: "/models/jacket.glb"` on a product and place the file in `public/models/`. The product viewer then loads it with `useGLTF` (centred automatically) instead of the procedural form study. Recommendations: glTF binary, real-world scale around 1.5–3 units tall, Draco or Meshopt compression, textures ≤ 2K, under ~5 MB. The hero uses the procedural jacket; to put a real model there, swap `<GarmentDisplay>` in `components/hero/HeroScene.tsx`.
+Set `model3d: "/models/jacket.glb"` on a product and place the file in `public/models/`. The product viewer then loads it with `useGLTF` (centred automatically) instead of the procedural form study. Recommendations: glTF binary, real-world scale around 1.5–3 units tall, Draco or Meshopt compression, textures ≤ 2K, under ~5 MB.
+
+### Hero turntable
+
+The hero jacket is cut from a green-screen spin video (`source-assets/hero/`, made with Google Flow). To replace it, make a video of one full turn that starts and ends facing the camera, with a locked camera and a flat green background. Then run:
+
+```bash
+python scripts/turntable.py source-assets/hero/jacket-turntable.mp4 --still source-assets/hero/jacket-front.png
+```
+
+This needs ffmpeg and Python with numpy, Pillow and scipy. It writes 120 transparent frames at even 3° steps to `public/hero/turntable/`: all of them small on one sheet (`atlas.webp`), each full size in `frames/`, plus `manifest.json`. It also writes `public/hero/jacket.webp` for the static fallback. The video's speed may vary; each frame's angle is measured from the silhouette. If the new garment's details differ, move the callouts in `CALLOUTS` (`components/hero/HeroScene.tsx`).
 
 ### Adding products
 

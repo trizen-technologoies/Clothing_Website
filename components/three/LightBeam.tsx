@@ -34,7 +34,7 @@ const fragmentShader = /* glsl */ `
 export function LightBeam({
   height = 7.5,
   radius = 1.7,
-  color = "#cfe9ff",
+  color = "#cdf1f6",
   level,
   ...props
 }: {

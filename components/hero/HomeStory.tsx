@@ -62,9 +62,9 @@ export function HomeStory({ children }: { children: ReactNode }) {
       <div data-stage className="sticky top-0 h-svh w-full overflow-hidden">
         <HeroStage />
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div data-scrim="hero" className="absolute inset-0 bg-[linear-gradient(to_top,rgba(5,5,5,0.92)_0%,rgba(5,5,5,0.35)_38%,transparent_60%)] md:bg-[linear-gradient(to_right,rgba(5,5,5,0.78)_0%,rgba(5,5,5,0.25)_45%,transparent_70%)]" />
-          <div data-scrim="statement" className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_50%,rgba(5,5,5,0.55),transparent_80%)] opacity-0" />
-          <div data-scrim="featured" className="absolute inset-0 bg-[linear-gradient(to_top,rgba(5,5,5,0.95)_0%,rgba(5,5,5,0.5)_45%,transparent_65%)] opacity-0 md:bg-[linear-gradient(to_left,rgba(5,5,5,0.85)_0%,rgba(5,5,5,0.3)_45%,transparent_65%)]" />
+          <div data-scrim="hero" className="absolute inset-0 bg-[linear-gradient(to_top,rgba(4,9,11,0.92)_0%,rgba(4,9,11,0.35)_38%,transparent_60%)] md:bg-[linear-gradient(to_right,rgba(4,9,11,0.78)_0%,rgba(4,9,11,0.25)_45%,transparent_70%)]" />
+          <div data-scrim="statement" className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_50%,rgba(4,9,11,0.55),transparent_80%)] opacity-0" />
+          <div data-scrim="featured" className="absolute inset-0 bg-[linear-gradient(to_top,rgba(4,9,11,0.95)_0%,rgba(4,9,11,0.5)_45%,transparent_65%)] opacity-0 md:bg-[linear-gradient(to_left,rgba(4,9,11,0.85)_0%,rgba(4,9,11,0.3)_45%,transparent_65%)]" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
         </div>
       </div>

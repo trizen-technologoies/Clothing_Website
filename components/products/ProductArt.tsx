@@ -10,6 +10,7 @@ import {
   type Detail,
   type GarmentKind,
 } from "@/lib/garments";
+import { palette } from "@/lib/palette";
 
 export type ArtView = "front" | "back" | "detail";
 
@@ -115,7 +116,7 @@ export function ProductArt({
 
       {backdrop && (
         <g>
-          <rect width={W} height={H} fill="#0d0f13" />
+          <rect width={W} height={H} fill={palette.card} />
           <rect width={W} height={H} fill={`url(#${id}-spot)`} />
           {view !== "detail" && (
             <>
@@ -127,9 +128,9 @@ export function ProductArt({
       )}
 
       <g transform={`translate(${tx} ${ty}) scale(${s})`}>
-        {/* Rim light: cyan from the right, violet from the left. */}
-        <path d={outline} fill="none" stroke="#00e5ff" strokeOpacity={0.5} strokeWidth={2.2 / s * 1.4} transform="translate(1.1 -0.5)" />
-        <path d={outline} fill="none" stroke="#8b5cf6" strokeOpacity={0.4} strokeWidth={2.2 / s * 1.4} transform="translate(-1.1 -0.5)" />
+        {/* Rim light: cyan from the right, deep teal from the left. */}
+        <path d={outline} fill="none" stroke={palette.cyan} strokeOpacity={0.5} strokeWidth={2.2 / s * 1.4} transform="translate(1.1 -0.5)" />
+        <path d={outline} fill="none" stroke={palette.teal} strokeOpacity={0.5} strokeWidth={2.2 / s * 1.4} transform="translate(-1.1 -0.5)" />
 
         <path d={outline} fill={`url(#${id}-fabric)`} filter={`url(#${id}-pillow)`} />
 
@@ -164,7 +165,7 @@ export function ProductArt({
       </g>
 
       {annotate && view !== "detail" && (
-        <g className="font-mono" fill="#00e5ff" stroke="#00e5ff" fontSize={9} letterSpacing={1.6}>
+        <g className="font-mono" fill={palette.cyan} stroke={palette.cyan} fontSize={9} letterSpacing={1.6}>
           <g strokeOpacity={0.45} strokeWidth={0.75} fill="none">
             <path d={`M${tx + b.minX * s} 470V478M${tx + b.minX * s} 474H${tx + b.maxX * s}M${tx + b.maxX * s} 470V478`} />
             <path d={`M378 ${ty + b.minY * s}H386M382 ${ty + b.minY * s}V${floorY}M378 ${floorY}H386`} />
@@ -198,7 +199,7 @@ function DetailShape({ detail, tones }: { detail: Detail; tones: ReturnType<type
       return <path d={d} fill="none" stroke={tones.light ? tones.shadow : tones.highlight} strokeWidth={detail.width ?? 1.8} strokeLinecap="round" />;
     case "accent":
       return (
-        <path d={d} fill="none" stroke="#00e5ff" strokeOpacity={0.85} strokeWidth={detail.width ?? 2} />
+        <path d={d} fill="none" stroke={palette.cyan} strokeOpacity={0.85} strokeWidth={detail.width ?? 2} />
       );
     case "zip":
       return (

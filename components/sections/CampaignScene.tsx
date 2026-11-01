@@ -8,6 +8,7 @@ import { FabricBanner } from "@/components/three/FabricBanner";
 import { FloatingParticles } from "@/components/three/FloatingParticles";
 import type { Quality } from "@/components/three/heroState";
 import { StudioEnvironment } from "@/components/three/StudioEnvironment";
+import { palette } from "@/lib/palette";
 
 function Rig({ quality, frozen }: { quality: Quality; frozen: boolean }) {
   const { size } = useThree();
@@ -27,16 +28,16 @@ function Rig({ quality, frozen }: { quality: Quality; frozen: boolean }) {
   return (
     <>
       <ambientLight intensity={0.08} />
-      <spotLight position={[2.5, 6, 6]} angle={0.45} penumbra={1} intensity={320} distance={30} decay={2} color="#eef4ff" />
+      <spotLight position={[2.5, 6, 6]} angle={0.45} penumbra={1} intensity={320} distance={30} decay={2} color={palette.key} />
       {/* Grazing rims catch the folds. */}
-      <pointLight position={[6.5, 0.5, -1.5]} intensity={140} distance={14} decay={2} color="#00e5ff" />
-      <pointLight position={[-1.5, 2.5, -3.5]} intensity={110} distance={14} decay={2} color="#8b5cf6" />
+      <pointLight position={[6.5, 0.5, -1.5]} intensity={140} distance={14} decay={2} color={palette.cyan} />
+      <pointLight position={[-1.5, 2.5, -3.5]} intensity={130} distance={14} decay={2} color={palette.teal} />
       <group ref={group} position={portrait ? [0.2, 1.6, -1] : [2.1, 0.9, 0]}>
         <group rotation={[0.04, portrait ? -0.3 : -0.55, 0.05]}>
           <FabricBanner quality={quality} frozen={frozen} />
         </group>
         <group position={[1.9, 0.6, -1.8]} rotation={[0.02, -0.15, -0.03]}>
-          <FabricBanner quality={quality} frozen={frozen} width={1.9} height={10} phase={2.3} sheen="#5fd8ff" />
+          <FabricBanner quality={quality} frozen={frozen} width={1.9} height={10} phase={2.3} sheen="#6fdfee" />
         </group>
       </group>
       <FloatingParticles count={quality === "high" ? 500 : 200} min={[-8, -5, -8]} range={[16, 10, 14]} size={1.3} frozen={frozen} />
@@ -54,8 +55,8 @@ export default function CampaignScene({ quality, active, reducedMotion, onReady 
       onCreated={() => onReady?.()}
       aria-hidden
     >
-      <color attach="background" args={["#050505"]} />
-      <fog attach="fog" args={["#050505", 9, 22]} />
+      <color attach="background" args={[palette.ink]} />
+      <fog attach="fog" args={[palette.ink, 9, 22]} />
       <StudioEnvironment intensity={0.9} variant="strips" />
       <Rig quality={quality} frozen={reducedMotion} />
     </Canvas>

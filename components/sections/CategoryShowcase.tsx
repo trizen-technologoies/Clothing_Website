@@ -55,7 +55,7 @@ export function CategoryShowcase({ products }: { products: Product[] }) {
                         className="object-cover opacity-80 brightness-[0.8] transition-[transform,opacity,filter] duration-1000 ease-out-expo group-hover:scale-[1.04] group-hover:opacity-100 group-hover:brightness-100"
                       />
                       {/* Keeps the labels legible over light photos. */}
-                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(5,5,5,0.6)_0%,transparent_30%,transparent_55%,rgba(5,5,5,0.85)_100%)]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(4,9,11,0.6)_0%,transparent_30%,transparent_55%,rgba(4,9,11,0.85)_100%)]" />
                     </>
                   ) : (
                     <>

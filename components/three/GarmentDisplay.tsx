@@ -6,6 +6,7 @@ import * as THREE from "three";
 
 import { fabricTones, mix } from "@/lib/color";
 import type { GarmentKind } from "@/lib/garments";
+import { palette } from "@/lib/palette";
 import { buildGarmentGeometry, buildGarmentMaps, buildPrintMaps } from "./garmentGeometry";
 import type { Quality } from "./heroState";
 
@@ -24,7 +25,7 @@ type Props = Omit<ThreeElements["group"], "ref"> & {
  * Sculptural garment form: extruded technical-flat silhouette with a fabric
  * (sheen) material and painted construction details.
  */
-export function GarmentDisplay({ kind, color, graphic = false, quality, glow = 1.4, accent = "#00e5ff", meshRef, ...group }: Props) {
+export function GarmentDisplay({ kind, color, graphic = false, quality, glow = 1.4, accent = palette.cyan, meshRef, ...group }: Props) {
   const geometry = useMemo(() => buildGarmentGeometry(kind, quality), [kind, quality]);
   const maps = useMemo(() => buildGarmentMaps(kind, quality, graphic), [kind, quality, graphic]);
   const tones = fabricTones(color);
@@ -40,7 +41,7 @@ export function GarmentDisplay({ kind, color, graphic = false, quality, glow = 1
       metalness: 0,
       sheen: 1,
       sheenRoughness: 0.42,
-      sheenColor: new THREE.Color(mix(color, "#9fb4c8", light ? 0.25 : 0.55)),
+      sheenColor: new THREE.Color(mix(color, "#9fc0c8", light ? 0.25 : 0.55)),
       envMapIntensity: 0.6,
     };
     const cap = (bump: THREE.Texture, glowMap: THREE.Texture | null, map: THREE.Texture | null) =>

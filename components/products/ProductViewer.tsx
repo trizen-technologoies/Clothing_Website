@@ -9,6 +9,7 @@ import * as THREE from "three";
 import { GarmentDisplay } from "@/components/three/GarmentDisplay";
 import { StudioEnvironment } from "@/components/three/StudioEnvironment";
 import type { GarmentKind } from "@/lib/garments";
+import { palette } from "@/lib/palette";
 
 type Props = {
   garment: GarmentKind;
@@ -73,12 +74,12 @@ export default function ProductViewer({ garment, color, graphic, modelUrl, onRea
         aria-label="Interactive 3D form study. Use the buttons below to rotate and zoom."
         role="img"
       >
-        <color attach="background" args={["#0d0f13"]} />
+        <color attach="background" args={[palette.card]} />
         <ambientLight intensity={0.4} />
-        <spotLight position={[2, 6, 7]} angle={0.5} penumbra={1} intensity={260} decay={2} color="#eef4ff" />
-        <pointLight position={[3.5, 1.5, -2.5]} intensity={45} distance={10} decay={2} color="#00e5ff" />
-        <pointLight position={[-3.5, 0.8, -2.5]} intensity={38} distance={10} decay={2} color="#8b5cf6" />
-        <directionalLight position={[0, 1, 6]} intensity={1} color="#c9d4e6" />
+        <spotLight position={[2, 6, 7]} angle={0.5} penumbra={1} intensity={260} decay={2} color={palette.key} />
+        <pointLight position={[3.5, 1.5, -2.5]} intensity={45} distance={10} decay={2} color={palette.cyan} />
+        <pointLight position={[-3.5, 0.8, -2.5]} intensity={42} distance={10} decay={2} color={palette.teal} />
+        <directionalLight position={[0, 1, 6]} intensity={1} color="#c4d8dd" />
         <StudioEnvironment intensity={0.8} />
 
         <Rig angle={angle} zoom={zoom}>

@@ -43,7 +43,7 @@ const fragmentShader = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d);
-    vec3 col = mix(vec3(0.82, 0.86, 0.95), vec3(0.0, 0.9, 1.0), vTint);
+    vec3 col = mix(vec3(0.80, 0.90, 0.92), vec3(0.1, 0.84, 0.93), vTint);
     gl_FragColor = vec4(col, a * vAlpha * uOpacity);
   }
 `;

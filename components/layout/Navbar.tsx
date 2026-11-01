@@ -71,9 +71,12 @@ export function Navbar({ searchItems }: { searchItems: SearchItem[] }) {
         >
           {!solid && <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/70 to-transparent" />}
           <nav aria-label="Primary" className="relative mx-auto grid h-16 grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-6 lg:px-10">
-            <Link href="/" aria-label={`${brand.name} — home`} className="justify-self-start py-2">
-              <Wordmark className="h-3.5 w-auto sm:h-4" />
-            </Link>
+            <div className="flex items-center gap-12 justify-self-start">
+              <Link href="/" aria-label={`${brand.name} — home`} className="py-2">
+                <Wordmark className="h-3.5 w-auto sm:h-4" />
+              </Link>
+              <span aria-hidden className="hidden h-4 w-px bg-line-strong md:block" />
+            </div>
 
             <ul className="hidden items-center gap-10 md:flex">
               {NAV.map((item) => (

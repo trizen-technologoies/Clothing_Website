@@ -4,17 +4,20 @@
 /* Design tokens                                                       */
 /* ------------------------------------------------------------------ */
 
+/* Cold, near-monochrome: blue-black grounds, slate-teal surfaces, cool white
+   type, an aqua glow and a deeper teal. Drawing code (3D, SVG) reads the same
+   colours from lib/palette.ts; change both together. */
 @theme {
-  --color-ink: #050505;
-  --color-ink-2: #0b0d10;
-  --color-card: #111318;
-  --color-card-2: #171a20;
-  --color-fg: #f5f5f5;
-  --color-muted: #92969f;
-  --color-cyan: #00e5ff;
-  --color-violet: #8b5cf6;
-  --color-line: rgb(255 255 255 / 0.12);
-  --color-line-strong: rgb(255 255 255 / 0.24);
+  --color-ink: #04090b;
+  --color-ink-2: #081114;
+  --color-card: #0c1619;
+  --color-card-2: #122024;
+  --color-fg: #eef5f6;
+  --color-muted: #8ba0a6;
+  --color-cyan: #1ad5ec;
+  --color-teal: #1b8aa3;
+  --color-line: rgb(190 228 236 / 0.12);
+  --color-line-strong: rgb(190 228 236 / 0.24);
   --color-danger: #ff5c5c;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -73,7 +76,7 @@
 
 @utility text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgb(245 245 245 / 0.55);
+  -webkit-text-stroke: 1px rgb(238 245 246 / 0.55);
 }
 
 /* ------------------------------------------------------------------ */
@@ -128,7 +131,7 @@
   }
 
   dialog::backdrop {
-    background: rgb(5 5 5 / 0.72);
+    background: rgb(4 9 11 / 0.72);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     animation: backdrop-in 280ms ease both;

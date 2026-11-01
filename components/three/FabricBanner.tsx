@@ -20,7 +20,7 @@ type Props = {
  * A hanging strip of black silk. Displacement and normals are computed in the
  * vertex shader (injected into MeshPhysicalMaterial), so it costs no CPU.
  */
-export function FabricBanner({ quality, frozen, width = 3.4, height = 9, phase = 0, sheen = "#8f80ff" }: Props) {
+export function FabricBanner({ quality, frozen, width = 3.4, height = 9, phase = 0, sheen = "#4fb6c6" }: Props) {
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(width, height, quality === "high" ? 80 : 36, quality === "high" ? 180 : 80),
     [quality, width, height],
@@ -30,7 +30,7 @@ export function FabricBanner({ quality, frozen, width = 3.4, height = 9, phase =
 
   const material = useMemo(() => {
     const m = new THREE.MeshPhysicalMaterial({
-      color: "#101116",
+      color: "#0d1518",
       roughness: 0.2,
       metalness: 0.15,
       sheen: 0.55,

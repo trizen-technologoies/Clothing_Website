@@ -13,8 +13,9 @@ import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-// Variable width axis powers both the condensed headlines and wide labels.
-const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"], axes: ["wdth"] });
+// Variable width axis powers both the condensed headlines and wide labels;
+// the italic sets the hero headline.
+const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"], axes: ["wdth"], style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   title: { default: `${brand.name} — ${brand.tagline}`, template: `%s — ${brand.name}` },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: "#04090b",
   colorScheme: "dark",
 };
 
